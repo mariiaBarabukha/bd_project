@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="GUI.Views.MainMenu.Options.OthersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:tabs ="clr-namespace:GUI.Views.MainMenu.Options.Others"
+             xmlns:local="clr-namespace:GUI.Views.MainMenu.Options"
+             mc:Ignorable="d" 
+            >
+    <Grid>
+        
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>Total sales</TabItem.Header>
+                <TabItem.Content>
+                    <tabs:ProductsSumView></tabs:ProductsSumView>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>Find product</TabItem.Header>
+                <TabItem.Content>
+                    <tabs:FindProduct></tabs:FindProduct>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>Find product details</TabItem.Header>
+                <TabItem.Content>
+                    <tabs:FindProductDetailView></tabs:FindProductDetailView>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+        
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="GUI.Views.MainMenu.HeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Views.MainMenu"
+             mc:Ignorable="d" 
+             >
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Position}" Margin="5"></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
