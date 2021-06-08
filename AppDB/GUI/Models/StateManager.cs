@@ -36,6 +36,8 @@ namespace GUI.Models
         public static int UPC = 0;
         public static string CashierForChecks = "All";
         public static string NameForProducts = "All";
+
+        public static int CheckID = 0;
         public static string Current_option
         {
             get => curr_opt;

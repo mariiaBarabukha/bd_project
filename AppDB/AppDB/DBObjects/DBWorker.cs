@@ -17,7 +17,7 @@ namespace Controller.DBObjects
         public DateTime Birthday { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public int ID_manager { get;  set; }
+        public string Name_manager { get;  set; }
         public DBWorker()
         {
 
@@ -37,7 +37,7 @@ namespace Controller.DBObjects
             Birthday = (DateTime)reader[5];
             Phone = reader[6].ToString();
             Address = reader[7].ToString();
-            ID_manager = Convert.ToInt32(reader[8]);
+            Name_manager = reader[10].ToString();
             return new DBWorker(this);
 
         }
@@ -52,7 +52,7 @@ namespace Controller.DBObjects
             Birthday = w.Birthday;
             Phone = w.Phone;
             Address = w.Address;
-            ID_manager = w.ID_manager;
+            Name_manager = w.Name_manager;
         }
     }
 }

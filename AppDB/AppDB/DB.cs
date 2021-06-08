@@ -100,17 +100,30 @@ namespace Controller
         {
             obj.DBobject = dBObjects[0];
             
-            string queryString = "SELECT * FROM [Worker] ";
+            string queryString = "SELECT * FROM Worker INNER JOIN" +
+                " Worker W1 ON [W1].[id_worker] = [Worker].[id_manager] ";
 
             return getData(queryString, obj);
+        }
+
+        public DBWorker GetWorkerByID(int id)
+        {
+            obj.DBobject = dBObjects[0];
+
+            string queryString = "SELECT * FROM Worker INNER JOIN" +
+                " Worker W1 ON [W1].[id_worker] = [Worker].[id_manager] " +
+                "WHERE [Worker].[id_worker] = "+id;
+
+            return (DBWorker)(getData(queryString, obj)[0]);
         }
 
         public List<DBObject> GetWorkerBySurname(string surname)
         {
             obj.DBobject = dBObjects[0];
 
-            string queryString = "SELECT * FROM [Worker] " +
-                "WHERE [full_name] LIKE '"+surname+"%'";
+            string queryString = "SELECT * FROM Worker INNER JOIN Worker W1 " +
+                "ON [W1].[id_worker] = [Worker].[id_manager] " +
+                "WHERE [Worker].[full_name] LIKE '"+surname+"%'";
 
             return getData(queryString, obj);
         }
@@ -119,9 +132,10 @@ namespace Controller
         {
             obj.DBobject = dBObjects[0];
 
-            string queryString = "SELECT * FROM [Worker] "+
-                "WHERE [position] = 'cashier'"+
-                "ORDER BY [full_name]";
+            string queryString = "SELECT * FROM Worker INNER JOIN Worker W1" +
+                " ON [W1].[id_worker] = [Worker].[id_manager] " +
+                "WHERE [Worker].[position] = 'cashier'"+
+                "ORDER BY [Worker].[full_name]";
 
             return getData(queryString, obj);
         }
@@ -240,6 +254,15 @@ namespace Controller
             return getData(queryString, obj);
         }
 
+        public List<DBObject> GetClientByName(string surname)
+        {
+            obj.DBobject = dBObjects[5];
+
+            string queryString = "SELECT * FROM [Client_card] " +
+                "WHERE [full_name_owner] LIKE '" + surname+" %'";
+            return getData(queryString, obj);
+        }
+
         public List<DBObject> GetTotalSumOfProducts(DateTime From,
             DateTime To)
         {
@@ -302,6 +325,17 @@ namespace Controller
 
             string queryString = "SELECT * FROM [Check] INNER JOIN [Worker] "+
                 "ON [Check].[cashier_id] = [Worker].[id_worker]";
+
+            return getData(queryString, obj);
+        }
+
+        public List<DBObject> GetChecksByID(int id)
+        {
+            obj.DBobject = dBObjects[7];
+
+            string queryString = "SELECT * FROM [Check] INNER JOIN [Worker] " +
+                "ON [Check].[cashier_id] = [Worker].[id_worker]" +
+                "WHERE [id_check] = " + id;
 
             return getData(queryString, obj);
         }
