@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Controller;
 using Controller.DBObjects;
 
@@ -28,11 +29,12 @@ namespace GUI.Models
             {
                 throw new Exception("Incorrect login!");
             }
-            if (temp != null && authUser.Password == temp.Password)
+            if (temp != null && authUser.Password == PasswordHandler.Decode(temp.Password))
             {
+                
                 dbUser = (DBUser)users[0];
             }
-
+            //MessageBox.Show(PasswordHandler.Decode(authUser.Password));
             if (dbUser == null)
             {
                 throw new Exception("Incorrect password!");
@@ -43,20 +45,10 @@ namespace GUI.Models
         public async Task<bool> RegisterUser(RegisteredUser regUser)
         {
             var dbUser = new DBUser(regUser.Name, regUser.Email,
-                regUser.Login, regUser.Password, regUser.Role, regUser.Bitrhday, regUser.Address,
+                regUser.Login, PasswordHandler.Code(regUser.Password), regUser.Role, regUser.Bitrhday, regUser.Address,
                 regUser.Phone, Model.getInstance().db.MinSalary, DateTime.UtcNow);
             Model.getInstance().db.AddUser(dbUser);
-            //Thread.Sleep(2000);
-            //UserHandler userHandler = new UserHandler();
-            //userHandler.Filename = @"../../../DataBase/Customer/customers.json";
-            //List<DBUser> users = await userHandler.GetAllAsync();
-            //var dbUser = users.FirstOrDefault(user => user.Login == regUser.Login);
-            //if (dbUser != null)
-            //    throw new Exception("User already exists");
-            //if (String.IsNullOrWhiteSpace(regUser.Login) || String.IsNullOrWhiteSpace(regUser.Password) || String.IsNullOrWhiteSpace(regUser.LastName))
-            //    throw new ArgumentException("Login, Password or Last Name is Empty");
-            
-            //await userHandler.write(dbUser);
+           
             return true;
 
         }

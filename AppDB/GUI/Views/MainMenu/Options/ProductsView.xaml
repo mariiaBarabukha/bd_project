@@ -21,9 +21,7 @@
                         DisplayMemberBinding="{Binding Path=ID}">ID</GridViewColumn>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=Name}" Width="100">Name</GridViewColumn>
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Price}" Width="100">Price</GridViewColumn>
-                    <GridViewColumn 
+                   <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Category}">Category</GridViewColumn>
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Expiration_day}" 

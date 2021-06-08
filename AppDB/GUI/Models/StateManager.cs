@@ -23,6 +23,7 @@ namespace GUI.Models
         public static Action GoToChecks;
         public static Action GoToClients;
         public static Action GoToOthers;
+        public static Action LogOut;
 
         public static string CategoryOfProducts = "All";
         public static string SurnameOfWorker = "";
@@ -33,6 +34,8 @@ namespace GUI.Models
         public static int VarOfProm = 0;
         public static string ProductsSortBy = "[name_product]";
         public static int UPC = 0;
+        public static string CashierForChecks = "All";
+        public static string NameForProducts = "All";
         public static string Current_option
         {
             get => curr_opt;

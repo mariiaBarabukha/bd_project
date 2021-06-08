@@ -12,19 +12,12 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
+        
         <parts:HeaderView Grid.ColumnSpan="2"></parts:HeaderView>
         <GridSplitter Grid.Column="0" VerticalAlignment="Bottom"
                       HorizontalAlignment="Stretch" Grid.ColumnSpan="2" 
                       Height="3" Background="Black"></GridSplitter>
+        <local:WorkerView Grid.Row="1"></local:WorkerView>
         
-        <parts:OptionsView Grid.Row="1"></parts:OptionsView>
-        <ScrollViewer HorizontalScrollBarVisibility="Visible"  Grid.Row="1" Grid.Column="1">
-            <parts:SelectedOptionView></parts:SelectedOptionView>
-        </ScrollViewer>
     </Grid>
 </UserControl>

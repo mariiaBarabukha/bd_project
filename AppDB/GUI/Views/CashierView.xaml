@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="GUI.Views.CashierView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Views"
+             xmlns:parts ="clr-namespace:GUI.Views.MainMenu.CashierOptions"
+             mc:Ignorable="d" >
+    <Grid>
+        <parts:CashierOptionsView></parts:CashierOptionsView>
+    </Grid>
+</UserControl>

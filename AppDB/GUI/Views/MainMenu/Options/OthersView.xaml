@@ -17,6 +17,12 @@
                 </TabItem.Content>
             </TabItem>
             <TabItem>
+                <TabItem.Header>Total amount</TabItem.Header>
+                <TabItem.Content>
+                    <tabs:ProductAmountView></tabs:ProductAmountView>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
                 <TabItem.Header>Find product</TabItem.Header>
                 <TabItem.Content>
                     <tabs:FindProduct></tabs:FindProduct>
@@ -26,6 +32,12 @@
                 <TabItem.Header>Find product details</TabItem.Header>
                 <TabItem.Content>
                     <tabs:FindProductDetailView></tabs:FindProductDetailView>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>Find product by name</TabItem.Header>
+                <TabItem.Content>
+                    <tabs:FindProductByNameView></tabs:FindProductByNameView>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

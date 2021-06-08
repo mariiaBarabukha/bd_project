@@ -18,7 +18,7 @@ namespace Controller.DBObjects
         {
             //ID = Convert.ToInt32(Guid.NewGuid());            
             Name = name;
-            Price = price;
+        //    Price = price;
             Category = category;
             Expiration_day = ed;
             
@@ -27,7 +27,7 @@ namespace Controller.DBObjects
         {
             ID = p.ID;           
             Name = p.Name;
-            Price = p.Price;
+         //   Price = p.Price;
             Category = p.Category;
             Expiration_day = p.Expiration_day;
 
@@ -35,7 +35,7 @@ namespace Controller.DBObjects
 
         public int ID { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
+       // public decimal Price { get; set; }
         public string Category { get; set; }       
         public DateTime Expiration_day { get; private set; }
 
@@ -43,9 +43,9 @@ namespace Controller.DBObjects
         {
             ID = Convert.ToInt32(reader[0]);
             Name = reader[1].ToString();
-            Price = Convert.ToDecimal(reader[2]);           
-            Category = reader[3].ToString();
-            Expiration_day = (DateTime)reader[4];
+          //  Price = Convert.ToDecimal(reader[2]);           
+            Category = reader[2].ToString();
+            Expiration_day = (DateTime)reader[3];
             return new DBProduct(this);
         }
     }

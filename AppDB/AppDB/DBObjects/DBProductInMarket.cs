@@ -52,7 +52,7 @@ namespace Controller.DBObjects
             Price = Convert.ToDecimal(reader[3]);
             IsPromotional = (bool)reader[4];
             Name = reader[7].ToString();
-            Characteristic = reader[11].ToString();
+            Characteristic = reader[10].ToString();
             return new DBProductInMarket(this);
         }
     }

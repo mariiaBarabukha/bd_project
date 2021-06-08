@@ -33,7 +33,7 @@
 
                 </ListView.View>
             </ListView>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel  VerticalAlignment="Top">
                 <Button Width="100" Height="20" Margin="5" 
                         Command="{Binding SortByAmount}">Sort by amount</Button>
                 <Button Width="100" Height="20" Margin="5"

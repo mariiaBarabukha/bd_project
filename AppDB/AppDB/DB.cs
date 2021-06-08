@@ -30,6 +30,8 @@ namespace Controller
             dBObjects[4] = new DBCategory();
             dBObjects[5] = new DBClientCard();
             dBObjects[6] = new DBProductSum();
+            dBObjects[7] = new DBCheckInfo();
+            dBObjects[8] = new DBSale();
         }
 
         private List<DBObject> getData(string queryString, DBObject obj)
@@ -138,7 +140,7 @@ namespace Controller
             obj.DBobject = dBObjects[2];
 
             string queryString = "SELECT [id_product], [name_product], "+
-                "[price], [name_category], [expiration_date]"+
+                "[name_category], [expiration_date]"+
                 " FROM [Product] INNER JOIN [Category] ON"+
                 "[Product].[category_id] = [Category].[id_category]"+
                 "ORDER BY [name_product]";
@@ -153,7 +155,7 @@ namespace Controller
             obj.DBobject = dBObjects[2];
 
             string queryString = "SELECT [id_product], [name_product], " +
-                "[price], [name_category], [expiration_date]" +
+                "[name_category], [expiration_date]" +
                 " FROM ([Product] INNER JOIN [Category] ON" +
                 "[Product].[category_id] = [Category].[id_category])" +
                 "WHERE [name_category] = '"+category+"'"+
@@ -195,7 +197,17 @@ namespace Controller
 
             return getData(queryString, obj);
         }
+        public List<DBObject> GetProductsInMarketByProduct(string name)
+        {
+            obj.DBobject = dBObjects[3];
 
+            string queryString = "SELECT *" +
+                " FROM Product_in_market INNER JOIN" +
+                " Product ON Product_in_market.id_product = Product.id_product"+
+                " WHERE name_product = '"+name+"'";
+
+            return getData(queryString, obj);
+        }
         public List<DBObject> GetAllNotPromProductsInMarket(string order)
         {
             obj.DBobject = dBObjects[3];
@@ -245,6 +257,23 @@ namespace Controller
 
             return getData(queryString, obj);
         }
+
+        public List<DBObject> GetTotalAmountOfProducts(DateTime From,
+            DateTime To)
+        {
+            obj.DBobject = dBObjects[6];
+            string date1 = From.Date.ToString("d").Replace(".", "/");
+            string date2 = To.Date.ToString("d").Replace(".", "/");
+            string queryString = "SELECT [name_product], COUNT([Sale].[amount]) AS total_amount "+
+                " FROM(([Check] INNER JOIN [Sale] ON [Check].[id_check] = [Sale].[check_id]) " +
+                " INNER JOIN [Product] ON [Sale].[id_product] = [Product].[id_product]) " +
+                " INNER JOIN [Product_in_market] ON [Sale].[id_product] = [Product_in_market].[id_product] "+
+                " WHERE [date_of_purchase] > #"+date1+"# AND [date_of_purchase] < #" +date2+"# "+
+                " GROUP BY name_product";
+
+
+            return getData(queryString, obj);
+        }
         public List<DBObject> GetTotalSumOfProductsByCashier(string name, 
             DateTime From, DateTime To)
         {
@@ -267,6 +296,37 @@ namespace Controller
             return getData(queryString, obj);
         }
 
+        public List<DBObject> GetAllChecks()
+        {
+            obj.DBobject = dBObjects[7];
+
+            string queryString = "SELECT * FROM [Check] INNER JOIN [Worker] "+
+                "ON [Check].[cashier_id] = [Worker].[id_worker]";
+
+            return getData(queryString, obj);
+        }
+
+        public List<DBObject> GetChecksByCashier(string name)
+        {
+            obj.DBobject = dBObjects[7];
+
+            string queryString = "SELECT * FROM [Check] INNER JOIN [Worker] " +
+                "ON [Check].[cashier_id] = [Worker].[id_worker]"+
+                "WHERE full_name = '"+name+"'";
+
+            return getData(queryString, obj);
+        }
+
+        public List<DBObject> GetSalesByCheck(int id)
+        {
+            obj.DBobject = dBObjects[8];
+
+            string queryString = "SELECT * FROM [Sale] INNER JOIN [Product] " +
+                "ON [Sale].[id_product] = [Product].[id_product]" +
+                "WHERE [check_id] = "+id;
+
+            return getData(queryString, obj);
+        }
 
         public void AddUser(DBUser regUser)
         {

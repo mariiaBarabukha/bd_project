@@ -35,6 +35,7 @@ namespace GUI.Views.MainMenu
             StateManager.GoToCategories = GoToCategories;
             StateManager.GoToClients = GoToClientCards;
             StateManager.GoToOthers = GoToOthers;
+            StateManager.GoToChecks = GoToChecks;
             //StateManager.ctx = Content;
         }
 
@@ -74,6 +75,10 @@ namespace GUI.Views.MainMenu
         public void GoToOthers()
         {
             Content = new OthersView();
+        }
+        public void GoToChecks()
+        {
+            Content = new ChecksView();
         }
 
     }

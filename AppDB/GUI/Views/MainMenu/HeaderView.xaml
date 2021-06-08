@@ -7,9 +7,16 @@
              mc:Ignorable="d" 
              >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
             <TextBlock Text="{Binding Name}" Margin="5"></TextBlock>
             <TextBlock Text="{Binding Position}" Margin="5"></TextBlock>
         </StackPanel>
+        <Button Grid.Column="1" Width="70" Height="20" Margin="10"
+                Command="{Binding LogOut}"
+                HorizontalAlignment="Right">Log out</Button>
     </Grid>
 </UserControl>

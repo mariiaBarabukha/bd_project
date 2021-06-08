@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace GUI.Views
         {
             InitializeComponent();
             Content = new SignInView(GotoSignUp, GoToMain);
+            StateManager.LogOut = GotoSignIn;
         }
         public void GotoSignUp()
         {

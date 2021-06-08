@@ -1,4 +1,5 @@
-﻿using GUI.ViewModels.MainMenu;
+﻿using GUI.Models;
+using GUI.ViewModels.MainMenu;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,9 +23,14 @@ namespace GUI.Views.MainMenu
         private HeaderViewModel _viewModel;
         public HeaderView()
         {
-            _viewModel = new HeaderViewModel();
+            _viewModel = new HeaderViewModel(LogOut);
             InitializeComponent();
             DataContext = _viewModel;
+        }
+
+        public void LogOut()
+        {
+            StateManager.LogOut.Invoke();
         }
     }
 }

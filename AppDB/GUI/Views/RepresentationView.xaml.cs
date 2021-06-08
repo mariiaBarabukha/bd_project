@@ -20,7 +20,9 @@ namespace GUI.Views
     {
         public RepresentationView()
         {
+           
             InitializeComponent();
+            
         }
     }
 }
