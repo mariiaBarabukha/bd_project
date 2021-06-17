@@ -10,11 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <ComboBox ItemsSource="{Binding Categories}" 
                     SelectedItem="{Binding SelectedCategory}"
                   Width="200" Height="20"></ComboBox>
-        <ListView Grid.Row="1" ItemsSource="{Binding Products}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding Product}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -26,10 +28,18 @@
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Expiration_day}" 
                                     Width="100">Expiration day</GridViewColumn>
-                    </GridView>
+                    <GridViewColumn 
+                        DisplayMemberBinding="{Binding Path=Characteristics}" 
+                                    Width="100">Characteristics</GridViewColumn>
+                </GridView>
 
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding Delete}" Width="100" Height="20" Margin="5">Delete</Button>
+            <Button Command="{Binding Add}" Width="100" Height="20" Margin="5">Add</Button>
+            <Button Command="{Binding Edit}" Width="100" Height="20" Margin="5">Edit</Button>
+        </StackPanel>
         
     </Grid>
 </UserControl>

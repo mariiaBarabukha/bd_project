@@ -1,4 +1,5 @@
 ﻿using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.AddEditPanel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace GUI.Views.MainMenu.Options
         ProductsInMarketViewModel _view;
         public ProductsInMarketView()
         {
-            _view = new ProductsInMarketViewModel(Reload);
+            _view = new ProductsInMarketViewModel(Reload, Manage);
             InitializeComponent();
             DataContext = _view;
         }
@@ -30,6 +31,11 @@ namespace GUI.Views.MainMenu.Options
         public void Reload()
         {
             Content = new ProductsInMarketView();
+        }
+
+        public void Manage()
+        {
+            Content = new ProductsInMarketPanel();
         }
     }
 }

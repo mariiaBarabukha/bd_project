@@ -1,4 +1,6 @@
-﻿using GUI.ViewModels.MainMenu.Options;
+﻿using GUI.ViewModels.MainMenu.AddEditPanels;
+using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.MainMenu.AddEditPanels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,13 +24,18 @@ namespace GUI.Views.MainMenu.Options
         ProductsViewModel _view;
         public ProductsView()
         {
-            _view = new ProductsViewModel(Reload);
+            _view = new ProductsViewModel(Reload, GoToAddEdit);
             InitializeComponent();
             DataContext = _view;
         }
         public void Reload()
         {
             Content = new ProductsView();
+        }
+
+        public void GoToAddEdit()
+        {
+            Content = new Products();
         }
     }
 }

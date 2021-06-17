@@ -6,10 +6,14 @@
              xmlns:local="clr-namespace:GUI.Views.MainMenu.Options"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock>Discount: </TextBlock>
@@ -20,7 +24,8 @@
             <Button Width="60" Height="30" Margin="5"
                     Command="{Binding GetAll}">All clients</Button>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding ClientCards}">
+        <ListView Grid.Row="1" ItemsSource="{Binding ClientCards}"
+                  SelectedItem="{Binding Card}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -36,5 +41,18 @@
 
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button  Width="100" Height="20" Margin="5"
+                        Command="{Binding Delete}"
+                Visibility="{Binding Path=delButtonVisibility, 
+                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+            <Button  Width="100" Height="20" Margin="5"
+                        Command="{Binding Edit}">Edit</Button>
+            <Button  Width="100" Height="20" Margin="5"
+                        Command="{Binding Add}"
+                Visibility="{Binding Path=delButtonVisibility, 
+                    Converter={StaticResource BoolToVisConverter}}">Add</Button>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

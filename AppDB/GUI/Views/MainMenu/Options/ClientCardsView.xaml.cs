@@ -1,4 +1,5 @@
 ﻿using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.AddEditPanel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace GUI.Views.MainMenu.Options
         ClientCardsViewModel _view;
         public ClientCardsView()
         {
-            _view = new ClientCardsViewModel(Reload);
+            _view = new ClientCardsViewModel(Reload, GoToAddEdit);
             InitializeComponent();
             DataContext = _view;
         }
@@ -30,6 +31,10 @@ namespace GUI.Views.MainMenu.Options
         public void Reload()
         {
             Content = new ClientCardsView();
+        }
+        public void GoToAddEdit()
+        {
+            Content = new Clients();
         }
     }
 }

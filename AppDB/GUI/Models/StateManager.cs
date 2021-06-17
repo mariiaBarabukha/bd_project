@@ -1,4 +1,5 @@
-﻿using GUI.ViewModels.MainMenu;
+﻿using Controller.DBObjects;
+using GUI.ViewModels.MainMenu;
 using GUI.ViewModels.MainMenu.Options;
 using Prism.Commands;
 using System;
@@ -37,7 +38,16 @@ namespace GUI.Models
         public static string CashierForChecks = "All";
         public static string NameForProducts = "All";
 
+        public static bool ToEdit;
+        public static DBProduct ProductToEdit;
+        public static DBWorker WorkerToEdit;
+        public static DBCategory CategoryToEdit;
+        public static DBClientCard CardToEdit;
+        public static DBSale SaleToEdit;
+        public static DBProductInMarket productInMarketToEdit;
+
         public static int CheckID = 0;
+        public static int CheckID2 = 0;
         public static string Current_option
         {
             get => curr_opt;

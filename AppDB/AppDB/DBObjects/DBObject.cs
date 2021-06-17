@@ -9,6 +9,7 @@ namespace Controller.DBObjects
     {
         private IDBObject _dBObject;
 
+       
         public DBObject()
         { }
         public DBObject(IDBObject dBObject)

@@ -18,10 +18,13 @@ namespace Controller.DBObjects
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Name_manager { get;  set; }
+        public int IDManager { get; set; }
         public DBWorker()
         {
 
         }
+
+        
         public DBWorker(OleDbDataReader reader)
         {
             makeObjectdFrom(reader);
@@ -37,6 +40,7 @@ namespace Controller.DBObjects
             Birthday = (DateTime)reader[5];
             Phone = reader[6].ToString();
             Address = reader[7].ToString();
+            IDManager = Convert.ToInt32(reader[8]);
             Name_manager = reader[10].ToString();
             return new DBWorker(this);
 
@@ -53,6 +57,22 @@ namespace Controller.DBObjects
             Phone = w.Phone;
             Address = w.Address;
             Name_manager = w.Name_manager;
+            IDManager = w.IDManager;
+        }
+
+        public DBWorker(int id, string name, string position, decimal salary, DateTime bd, DateTime start, 
+            string phone, string address, string name_manager, int id_manager)
+        {
+            ID = id;
+            Name = name;
+            Position = position;
+            Salary = salary;
+            Date_start = start;
+            Birthday = bd;
+            Phone = phone;
+            Address = address;
+            Name_manager = name_manager;
+            IDManager = id_manager;
         }
     }
 }

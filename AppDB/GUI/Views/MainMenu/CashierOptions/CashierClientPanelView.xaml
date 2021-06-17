@@ -10,13 +10,13 @@
     <Grid>
         <TabControl>
             <TabItem>
-                <TabItem.Header>Find by Surname</TabItem.Header>
+                <TabItem.Header>Find by Discount Percents</TabItem.Header>
                 <TabItem.Content>
                     <tabs:ClientCardsView></tabs:ClientCardsView>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
-                <TabItem.Header>Find by Discount Percents</TabItem.Header>
+                <TabItem.Header>Find by Surname</TabItem.Header>
                 <TabItem.Content>
                     <local:ClientByName></local:ClientByName>
                 </TabItem.Content>

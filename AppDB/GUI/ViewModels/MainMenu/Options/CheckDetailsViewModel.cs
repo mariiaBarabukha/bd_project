@@ -11,9 +11,21 @@ namespace GUI.ViewModels.MainMenu.Options
     class CheckDetailsViewModel
     {
         public List<DBSale> Sales { get; set; }
+        public DBSale Sale { get;
+            set; }
         public DelegateCommand Back { get; }
-        public CheckDetailsViewModel(Action back)
+        public DelegateCommand Delete { get; }
+        private Action _reload;
+        public bool delButtonVisibility { get; set; }
+        public CheckDetailsViewModel(Action back, Action reload)
         {
+            _reload = reload;
+            delButtonVisibility = false;
+            if (StateManager.Current_user.Position.ToUpper() == "MANAGER")
+            {
+                delButtonVisibility = true;
+            }
+            Delete = new DelegateCommand(DeleteSale);
             Back = new DelegateCommand(back);
             var selected = SelectedItemsManager.SelectedCheck;
             if (selected == null)
@@ -24,6 +36,13 @@ namespace GUI.ViewModels.MainMenu.Options
             {
                 Sales.Add((DBSale)sale);
             }
+        }
+
+        private void DeleteSale()
+        {
+            Model.getInstance().db.DeleteSale(Sale.IDCheck, Sale.IDProduct);
+            _reload.Invoke();
+
         }
     }
 }

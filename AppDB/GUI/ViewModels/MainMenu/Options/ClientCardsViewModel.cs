@@ -28,13 +28,33 @@ namespace GUI.ViewModels.MainMenu.Options
            
         }
         public List<DBClientCard> ClientCards { get; set; }
+        public DBClientCard Card 
+        { 
+            get => StateManager.CardToEdit; 
+            set => StateManager.CardToEdit = value;
+        }
         public DelegateCommand Find { get; }
+        public DelegateCommand Delete { get; }
+        public DelegateCommand Add { get; }
+        public DelegateCommand Edit { get; }
+
+        private Action _goToAdd;
         public DelegateCommand GetAll { get; }
         Action _reload;
-        public ClientCardsViewModel(Action reload)
+        public bool delButtonVisibility { get; set; }
+        public ClientCardsViewModel(Action reload, Action goToAdd)
         {
             _reload = reload;
+            _goToAdd = goToAdd;
+            Add = new DelegateCommand(GoToAdd);
+            Edit = new DelegateCommand(GoToEdit);
+            delButtonVisibility = false;
+            if (StateManager.Current_user.Position.ToUpper() == "MANAGER")
+            {
+                delButtonVisibility = true;
+            }
             Find = new DelegateCommand(reload);
+            Delete = new DelegateCommand(DeleteCard);
             GetAll = new DelegateCommand(GetAllClients);
             ClientCards = new List<DBClientCard>();
             var cards = Load();
@@ -45,6 +65,22 @@ namespace GUI.ViewModels.MainMenu.Options
 
         }
 
+        private void GoToAdd()
+        {
+            StateManager.ToEdit = false;
+            _goToAdd.Invoke();
+        }
+        private void GoToEdit()
+        {
+            StateManager.ToEdit = true;
+            _goToAdd.Invoke();
+        }
+        private void DeleteCard()
+        {
+            Model.getInstance().db.DeleteClient(Card.ID);
+            _reload.Invoke();
+
+        }
         public void GetAllClients()
         {
             StateManager.PercentDiscount = 0;

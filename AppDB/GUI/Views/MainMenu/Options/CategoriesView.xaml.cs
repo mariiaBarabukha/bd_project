@@ -1,4 +1,5 @@
 ﻿using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.AddEditPanel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,9 +23,18 @@ namespace GUI.Views.MainMenu.Options
         CategoriesViewModel _view;
         public CategoriesView()
         {
-            _view = new CategoriesViewModel();
+            _view = new CategoriesViewModel(Reload, GoToAddEdit);
             InitializeComponent();
             DataContext = _view;
+        }
+
+        public void Reload()
+        {
+            Content = new CategoriesView();
+        }
+        public void GoToAddEdit()
+        {
+            Content = new Categories();
         }
     }
 }

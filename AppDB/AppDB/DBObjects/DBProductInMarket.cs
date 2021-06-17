@@ -14,7 +14,7 @@ namespace Controller.DBObjects
             makeObjectdFrom(reader);
         }
         public DBProductInMarket(int upc_o, string name, int upc_p, decimal price,
-            int amount, bool isProm, string characteristic)
+            int amount, bool isProm, string characteristic, int id)
         {
             //ID = Convert.ToInt32(Guid.NewGuid());            
             UPC_ordinary = upc_o;
@@ -24,6 +24,7 @@ namespace Controller.DBObjects
             IsPromotional = isProm;
             Name = name;
             Characteristic = characteristic;
+            IDProduct = id;
         }
         public DBProductInMarket(DBProductInMarket p)
         {
@@ -34,6 +35,7 @@ namespace Controller.DBObjects
             IsPromotional = p.IsPromotional;
             Name = p.Name;
             Characteristic = p.Characteristic;
+            IDProduct = p.IDProduct;
         }
 
         public int UPC_ordinary { get; set; }
@@ -43,6 +45,7 @@ namespace Controller.DBObjects
         public bool IsPromotional { get; set; }
         public string Name { get; set; }
         public string Characteristic { get; set; }
+        public int IDProduct { get; set; }
 
         public DBObject makeObjectdFrom(OleDbDataReader reader)
         {
@@ -51,6 +54,7 @@ namespace Controller.DBObjects
             Amount = Convert.ToInt32(reader[2]);
             Price = Convert.ToDecimal(reader[3]);
             IsPromotional = (bool)reader[4];
+            IDProduct = Convert.ToInt32(reader[5]);
             Name = reader[7].ToString();
             Characteristic = reader[10].ToString();
             return new DBProductInMarket(this);

@@ -13,14 +13,15 @@ namespace Controller.DBObjects
         {
             makeObjectdFrom(reader);
         }
-        public DBProduct(string name, decimal price,
-            string category, DateTime ed)
+        public DBProduct(int id, string name, int category, DateTime ed, string charact)
         {
-            //ID = Convert.ToInt32(Guid.NewGuid());            
+            //ID = Convert.ToInt32(Guid.NewGuid());  
+            ID = id;
             Name = name;
         //    Price = price;
-            Category = category;
+            IDCategory = category;
             Expiration_day = ed;
+            Characteristics = charact;
             
         }
         public DBProduct(DBProduct p)
@@ -30,6 +31,8 @@ namespace Controller.DBObjects
          //   Price = p.Price;
             Category = p.Category;
             Expiration_day = p.Expiration_day;
+            Characteristics = p.Characteristics;
+            IDCategory = p.IDCategory;
 
         }
 
@@ -38,6 +41,8 @@ namespace Controller.DBObjects
        // public decimal Price { get; set; }
         public string Category { get; set; }       
         public DateTime Expiration_day { get; private set; }
+        public string Characteristics { get; set; }
+        public int IDCategory { get; set; }
 
         public DBObject makeObjectdFrom(OleDbDataReader reader)
         {
@@ -46,6 +51,8 @@ namespace Controller.DBObjects
           //  Price = Convert.ToDecimal(reader[2]);           
             Category = reader[2].ToString();
             Expiration_day = (DateTime)reader[3];
+            IDCategory = Convert.ToInt32(reader[4]);
+            Characteristics = reader[5].ToString();
             return new DBProduct(this);
         }
     }

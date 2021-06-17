@@ -1,6 +1,7 @@
 ﻿using GUI.Models;
 using GUI.ViewModels.MainMenu;
 using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.AddEditPanel;
 using GUI.Views.MainMenu.Options;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace GUI.Views.MainMenu
 
         public void GoToWorkers()
         {
-            Content = new WorkersView(GoToCashiers, GoToFindWorker);
+            Content = new WorkersView(GoToCashiers, GoToFindWorker, GoToWorkers, GoToEditWorker);
         }
         public void GoToCashiers()
         {
@@ -81,5 +82,9 @@ namespace GUI.Views.MainMenu
             Content = new ChecksView();
         }
 
+        public void GoToEditWorker()
+        {
+            Content = new Workers(GoToWorkers);
+        }
     }
 }

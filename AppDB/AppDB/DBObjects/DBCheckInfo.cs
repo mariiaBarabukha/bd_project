@@ -30,7 +30,18 @@ namespace Controller.DBObjects
             Total_sum = p.Total_sum;
             VAT = p.VAT;
             PurchaseDate = p.PurchaseDate;
-           // Sales = new List<DBSale>(p.Sales);
+            IDCard = p.IDCard;
+        }
+
+        public DBCheckInfo(int id, DateTime dp, string name, int card, decimal total, decimal vat)
+        {
+            ID = id;
+            CashierName = name;
+            Total_sum = total;
+            VAT = vat;
+            PurchaseDate = dp;
+            IDCard = card;
+            // Sales = new List<DBSale>(p.Sales);
         }
 
         public int ID { get; set; }
@@ -38,6 +49,7 @@ namespace Controller.DBObjects
         public decimal Total_sum { get; set; }
         public decimal VAT { get; set; }
         public DateTime PurchaseDate { get; set; }
+        public int IDCard { get; set; }
 
         public List<DBSale> Sales { get; set; }
 
@@ -49,6 +61,7 @@ namespace Controller.DBObjects
             PurchaseDate = (DateTime)reader[1];
             Total_sum = Convert.ToDecimal(reader[2]);
             VAT = Total_sum / 6;
+            IDCard = Convert.ToInt32(reader[4]);
             CashierName = reader[7].ToString();
             //var temp = Model.getInstance().db.GetSalesByCheck(ID);
             //Sales = new List<DBSale>();

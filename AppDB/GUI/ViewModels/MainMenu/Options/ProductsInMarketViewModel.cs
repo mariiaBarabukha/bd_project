@@ -12,20 +12,31 @@ namespace GUI.ViewModels.MainMenu.Options
     {
         Action _reload;
         public List<DBProductInMarket> ProductsMarket { get; set; }
+        public DBProductInMarket Product { get; set; }
         public DelegateCommand GetAll { get; }
         public DelegateCommand GetPromotional { get; }
         public DelegateCommand GetNotPromotional { get; }
 
         public DelegateCommand SortByAmount { get; }
         public DelegateCommand SortByName { get; }
-        public ProductsInMarketViewModel(Action reload)
+        public DelegateCommand Delete { get; }
+        public DelegateCommand Manage { get; }
+        public bool delButtonVisibility { get; set; }
+        public ProductsInMarketViewModel(Action reload, Action manage)
         {
             _reload = reload;
+            delButtonVisibility = false;
+            if (StateManager.Current_user.Position.ToUpper() == "MANAGER")
+            {
+                delButtonVisibility = true;
+            }
+            Delete = new DelegateCommand(DeleteProduct);
             GetAll = new DelegateCommand(GetAllProd);
             GetPromotional = new DelegateCommand(GetAllPromProd);
             GetNotPromotional = new DelegateCommand(GetAllNotPromProd);
             SortByAmount = new DelegateCommand(sortByAmount);
             SortByName = new DelegateCommand(sortByName);
+            Manage = new DelegateCommand(manage);
             ProductsMarket = new List<DBProductInMarket>();
             var products = Load();
             foreach (var product in products)
@@ -34,6 +45,12 @@ namespace GUI.ViewModels.MainMenu.Options
             }
         }
 
+        private void DeleteProduct()
+        {
+            Model.getInstance().db.DeleteProductInMarket(Product.UPC_ordinary);
+            _reload.Invoke();
+
+        }
         private void GetAllProd()
         {
             StateManager.VarOfProm = 0;

@@ -25,6 +25,12 @@ namespace Controller.DBObjects
             Name = p.Name;
         }
 
+        public DBCategory(int iD, string name)
+        {
+            ID = iD;
+            Name = name;
+        }
+
         public int ID { get; set; }
         public string Name { get; set; }
       

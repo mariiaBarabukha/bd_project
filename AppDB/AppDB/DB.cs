@@ -34,30 +34,29 @@ namespace Controller
             dBObjects[8] = new DBSale();
         }
 
-        private List<DBObject> getData(string queryString, DBObject obj)
+        public void UpdateSale(int checkID2, int uPC, int amount)
         {
-            //obj = (str)obj;
-            var dataList = new List<DBObject>();
-           
-            using (OleDbConnection connection = new OleDbConnection(
-                       connectionString))
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = queryString;
-                command.CommandType = System.Data.CommandType.Text;
-                connection.Open();
+            OleDbConnection connection = new OleDbConnection(
+                        connectionString);
+            // string date1 = worker.Date_start.Date.ToString("d").Replace(".", "/");
+            //  string date2 = worker.Birthday.Date.ToString("d").Replace(".", "/");
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Sale " +
+                "Set amount = @amount " +
 
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    dataList.Add(obj.makeObjectFrom(reader));
-                }
-                reader.Close();
+                " WHERE check_id = @check_id AND id_product = @id_product;";
 
-            }
+            cmd.Parameters.AddWithValue("@amount", amount);
+            cmd.Parameters.AddWithValue("@check_id", checkID2);
+            cmd.Parameters.AddWithValue("@id_product", uPC);
 
-            return dataList;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
+
+
 
         //public List<DBObject> GetData1()
         //{
@@ -72,7 +71,7 @@ namespace Controller
         //       " FROM [Product] INNER JOIN [Category] ON [Product].[category_id] = [Category].[id_category]" +
         //       " WHERE [name_category] = 'Побутова хімія'))";
         //    return getData(queryString, obj);
-            
+
         //}
         public List<DBObject> GetData4()
         {
@@ -139,6 +138,18 @@ namespace Controller
 
             return getData(queryString, obj);
         }
+
+        public List<DBObject> GetManagers()
+        {
+            obj.DBobject = dBObjects[0];
+
+            string queryString = "SELECT * FROM Worker INNER JOIN Worker W1" +
+                " ON [W1].[id_worker] = [Worker].[id_manager] " +
+                "WHERE [Worker].[position] = 'manager'" +
+                "ORDER BY [Worker].[full_name]";
+
+            return getData(queryString, obj);
+        }
         public List<DBObject> GetAllCategories()
         {
             obj.DBobject = dBObjects[4];
@@ -154,7 +165,7 @@ namespace Controller
             obj.DBobject = dBObjects[2];
 
             string queryString = "SELECT [id_product], [name_product], "+
-                "[name_category], [expiration_date]"+
+                "[name_category], [expiration_date], [category_id], [characteristics]"+
                 " FROM [Product] INNER JOIN [Category] ON"+
                 "[Product].[category_id] = [Category].[id_category]"+
                 "ORDER BY [name_product]";
@@ -162,14 +173,46 @@ namespace Controller
             return getData(queryString, obj);
         }
 
+        public List<DBObject> GetProductsNotInMarket()
+        {
+            obj.DBobject = dBObjects[2];
 
+            string queryString = "SELECT [id_product], [name_product], " +
+                "[name_category], [expiration_date], [category_id], [characteristics]" +
+                " FROM [Product] AS T INNER JOIN [Category] ON" +
+                "[T].[category_id] = [Category].[id_category]  " +
+                " WHERE NOT EXISTS(SELECT*" +
+                " FROM Product_in_market INNER JOIN[Product] ON " +
+                " [Product_in_market].[id_product] = [Product].[id_product]" +
+                " WHERE T.id_product = Product.id_product)";
+
+
+            return getData(queryString, obj);
+        }
+
+        public List<DBObject> GetProductsNotInMarketNotProm()
+        {
+            obj.DBobject = dBObjects[2];
+
+            string queryString = "SELECT Product.[id_product], [name_product], " +
+                " [name_category], [expiration_date], [category_id], [characteristics]" +
+                " FROM ((Product INNER JOIN Category ON Product.[category_id] = [Category].[id_category]) " +
+                " INNER JOIN Product_in_market ON Product.id_product = Product_in_market.id_product)" +
+                " WHERE Product.id_product NOT IN (SELECT Product.id_product FROM ((Product  INNER JOIN Category ON Product.[category_id] = [Category].[id_category]) " +
+                " INNER JOIN Product_in_market ON Product.id_product = Product_in_market.id_product) " +
+                " Left Join Product_in_market AS T ON T.UPC_ordinary = Product_in_market.UPC_promotional" +
+                " WHERE Product_in_market.isPromotional = 0 AND T.isPromotional = -1)";
+
+
+            return getData(queryString, obj);
+        }
 
         public List<DBObject> GetProductsWithCategory(string category)
         {
             obj.DBobject = dBObjects[2];
 
             string queryString = "SELECT [id_product], [name_product], " +
-                "[name_category], [expiration_date]" +
+                "[name_category], [expiration_date], [category_id], [characteristics] " +
                 " FROM ([Product] INNER JOIN [Category] ON" +
                 "[Product].[category_id] = [Category].[id_category])" +
                 "WHERE [name_category] = '"+category+"'"+
@@ -355,12 +398,128 @@ namespace Controller
         {
             obj.DBobject = dBObjects[8];
 
-            string queryString = "SELECT * FROM [Sale] INNER JOIN [Product] " +
-                "ON [Sale].[id_product] = [Product].[id_product]" +
-                "WHERE [check_id] = "+id;
+            string queryString = "SELECT * FROM ([Sale] INNER JOIN [Product_in_market] " +
+                "ON [Sale].[id_product] = [Product_in_market].[UPC_ordinary])" +
+                " INNER JOIN Product ON Product_in_market.id_product = Product.id_product" +
+                " WHERE [check_id] = "+id;
 
             return getData(queryString, obj);
         }
+
+        private List<DBObject> getData(string queryString, DBObject obj)
+        {
+            //obj = (str)obj;
+            var dataList = new List<DBObject>();
+
+            using (OleDbConnection connection = new OleDbConnection(
+                       connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = queryString;
+                command.CommandType = System.Data.CommandType.Text;
+                connection.Open();
+
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    dataList.Add(obj.makeObjectFrom(reader));
+                }
+                reader.Close();
+
+            }
+
+            return dataList;
+        }
+
+
+        public void DeleteWorker(int id)
+        {
+            string queryString = "DELETE * FROM [Worker]" +
+                "WHERE id_worker = " + id;
+            Delete(queryString);
+        }
+
+        public void DeleteProduct(int id)
+        {
+            string queryString = "DELETE * FROM [Product]" +
+                "WHERE id_product = " + id;
+            Delete(queryString);
+        }
+        public void DeleteCategory(int id)
+        {
+            string queryString = "DELETE * FROM [Category]" +
+                "WHERE id_category = " + id;
+            Delete(queryString);
+        }
+        public void DeleteProductInMarket(int id)
+        {
+            string queryString = "DELETE * FROM [Product_in_market]" +
+                "WHERE UPC_ordinary = " + id;
+            Delete(queryString);
+        }
+        public void DeleteCheck(int id)
+        {
+            var sales = GetSalesByCheck(id);
+            foreach (var sale in sales)
+            {
+                DeleteSale(id,((DBSale)sale).IDProduct);
+            }
+            string queryString = "DELETE * FROM [Check]" +
+                "WHERE id_check = " + id;
+            Delete(queryString);
+        }
+        public void DeleteSale(int check_id, int id_product)
+        {
+            obj.DBobject = dBObjects[8];
+            string getQueryString = "SELECT * FROM [Sale] INNER JOIN [Product] " +
+                "ON [Sale].[id_product] = [Product].[id_product] " +
+                " WHERE check_id = " + check_id + " AND [Product].id_product = " + id_product;
+            var t = getData(getQueryString, obj);
+            if (t.Count == 0)
+            {
+                return;
+            }
+
+            var sale = (DBSale)(t[0]);
+
+            int amount = sale.Amount;
+            //int id_prod = sale.IDProduct;
+            string queryString = "DELETE * FROM [Sale] " +
+                " WHERE check_id = " + check_id + " AND id_product = "+ id_product;
+            Delete(queryString);
+            string updateQueryString = "UPDATE Product_in_market " +
+                " SET amount_of_product = amount_of_product + " + amount+
+                " WHERE id_product = " + id_product;
+            OleDbConnection connection = new OleDbConnection(
+                        connectionString);
+            connection.Open();
+            OleDbCommand updatecmd = new OleDbCommand();
+            updatecmd.CommandText = updateQueryString;
+            updatecmd.Connection = connection;
+            updatecmd.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void DeleteClient(int id)
+        {
+            string queryString = "DELETE * FROM [Client_card]" +
+                "WHERE card_id = " + id;
+            Delete(queryString);
+        }
+
+
+        private void Delete(string queryString)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                        connectionString);
+            connection.Open();
+            OleDbCommand delcmd = new OleDbCommand();
+            delcmd.CommandText = queryString;
+            delcmd.Connection = connection;
+            delcmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
 
         public void AddUser(DBUser regUser)
         {
@@ -403,43 +562,360 @@ namespace Controller
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            //Random random = new Random();
-            //var bytes = new byte[1];
-            //random.NextBytes(bytes);
-            //OleDbDataAdapter adapter = new OleDbDataAdapter();
-            //OleDbCommand command;
-            //OleDbConnection connection = new OleDbConnection(
-            //            connectionString);
-
-
-            //command = new OleDbCommand(
-            //    "INSERT INTO User " +
-            //    "VALUES ("+ bytes[0] + ", ?, ?, ?, ?, ?)", connection);
-
-            //command.Parameters.Add(
-            //    "user_id", OleDbType.Integer).Value = bytes[0];
-            //command.Parameters.Add(
-            //    "full_name", OleDbType.VarChar).Value = regUser.Name;
-            //command.Parameters.Add(
-            //    "login", OleDbType.VarChar).Value = regUser.Login;
-            //command.Parameters.Add(
-            //    "email", OleDbType.VarChar).Value = regUser.Email;
-            //command.Parameters.Add(
-            //    "password", OleDbType.VarChar).Value = regUser.Password;
-            //command.Parameters.Add(
-            //    "role", OleDbType.VarChar).Value = regUser.Role;
-
-            //"INSERT INTO User " +
-            //    "VALUES (" + regUser.Name + ", " + regUser.Login +
-            //    ", " + regUser.Email + ", " + regUser.Password + ", " + regUser.Role
-            //    + ")", connection);
-
-            //adapter.InsertCommand = command;
 
             return;
         }
 
-       
 
+        public void AddProduct(DBProduct product)
+        {
+            //Random random = new Random();
+            //var bytes = new byte[1];
+            //random.NextBytes(bytes);
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+            
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Product]"
+                + " VALUES (@id_product,@name_product,@category_id,"
+                + "@exp_date, @characteristics)";
+            cmd.Parameters.AddWithValue("@id_product", product.ID);
+            cmd.Parameters.AddWithValue("@name_product", product.Name);
+            cmd.Parameters.AddWithValue("@category_id", product.IDCategory);
+            cmd.Parameters.AddWithValue("@exp_date", product.Expiration_day);
+            cmd.Parameters.AddWithValue("@characteristics", product.Characteristics);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return;
+        }
+
+        public void AddNotPromProductInMarket(int id, decimal price, int amount)
+        {
+            //Random random = new Random();
+            //var bytes = new byte[1];
+            //random.NextBytes(bytes);
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Product_in_market]"
+                + " VALUES (@upc,@upc_prom,@amount,"
+                + "@price, @isProm, @id)";
+            cmd.Parameters.AddWithValue("@upc", id-100);
+            cmd.Parameters.AddWithValue("@upc_prom", id+100);
+            cmd.Parameters.AddWithValue("@amount", amount);
+            cmd.Parameters.AddWithValue("@price", (decimal)(price*78/50));
+            cmd.Parameters.AddWithValue("@isProm", false);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return;
+        }
+
+        public void AddPromProductInMarket(int id, decimal origin_price, int amount)
+        {
+            //Random random = new Random();
+            //var bytes = new byte[1];
+            //random.NextBytes(bytes);
+            //decimal origin_price = 0;
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Product_in_market]"
+                + " VALUES (@upc,@upc_prom,@amount,"
+                + "@price, @isProm, @id)";
+            cmd.Parameters.AddWithValue("@upc", id + 100);
+            cmd.Parameters.AddWithValue("@upc_prom", id + 100);
+            cmd.Parameters.AddWithValue("@amount", amount);
+            var price = origin_price * 36 /25;
+            cmd.Parameters.AddWithValue("@price", (decimal)price);
+            cmd.Parameters.AddWithValue("@isProm", true);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return;
+        }
+        public int AddCheck(int card_id, int cashier_id)
+        {
+            Random random = new Random();
+            var bytes = new byte[1];
+            random.NextBytes(bytes);
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Check]" +
+                " (id_check, date_of_purchase, cashier_id) " +
+                "VALUES (@id_check, Date(), @cashier_id)";
+            cmd.Parameters.AddWithValue("@id_check", bytes[0]);
+            //cmd.Parameters.AddWithValue("@client_id", clientCardId);
+            cmd.Parameters.AddWithValue("@cashier_id", cashier_id);           
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return bytes[0];
+        }
+
+        public void AddClientCard(DBClientCard card)
+        {
+            //Random random = new Random();
+            //var bytes = new byte[1];
+            //random.NextBytes(bytes);
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Client_card]"
+                + " VALUES (@card_id,@full_name,@phone,"
+                + "@address, @discount)";
+            cmd.Parameters.AddWithValue("@card_id", card.ID);
+            cmd.Parameters.AddWithValue("@full_name", card.Name);
+            cmd.Parameters.AddWithValue("@phone", card.Phone);
+            cmd.Parameters.AddWithValue("@address", card.Address);
+            cmd.Parameters.AddWithValue("@discount", card.Discount);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return;
+        }
+        public void AddCategory(DBCategory category)
+        {
+            
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [Category]"
+                + " VALUES (@id_category,@name_category)";
+            cmd.Parameters.AddWithValue("@id_category", category.ID);
+            cmd.Parameters.AddWithValue("@name_category", category.Name);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return;
+        }
+
+        public void AddSale(int id_check, int id_prod, int amount)
+        {
+
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+            var prod = GetProductsInMarketByUPC(id_prod);
+            if (prod != null && id_check != 0)
+            {
+                decimal price = ((DBProductInMarket)prod[0]).Price;
+                var cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO [Sale]"
+                    + " VALUES (@id_check,@id_prod,@amount,@price)";
+                cmd.Parameters.AddWithValue("@id_check", id_check);
+                cmd.Parameters.AddWithValue("@id_prod", id_prod);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@price", price);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                string updateQueryString = "UPDATE Product_in_market " +
+                " SET amount_of_product = amount_of_product - " + amount +
+                " WHERE UPC_ordinary = " + id_prod;
+               
+                connection.Open();
+                OleDbCommand updatecmd = new OleDbCommand();
+                updatecmd.CommandText = updateQueryString;
+                updatecmd.Connection = connection;
+                updatecmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            
+
+            return;
+        }
+
+        public void UpdateProduct(DBProduct product)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Product " +
+                "Set name_product = @name_product," +
+                "category_id = @category_id, expiration_date = @exp_date," +
+                "Characteristics = @characteristics " +
+                "WHERE id_product = @id_product; ";
+            
+            cmd.Parameters.AddWithValue("@name_product", product.Name);
+            cmd.Parameters.AddWithValue("@category_id", product.IDCategory);
+            cmd.Parameters.AddWithValue("@exp_date", product.Expiration_day);
+            cmd.Parameters.AddWithValue("@characteristics", product.Characteristics);
+            cmd.Parameters.AddWithValue("@id_product", product.ID);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void UpdateClientCard(DBClientCard card)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Client_card " +
+                "Set full_name_owner = @full_name," +
+                "phone_number_owner = @phone_number_owner, address_owner = @address_owner," +
+                "discount_percents = @discount_percents " +
+                "WHERE card_id = @card_id; ";
+           
+           
+            cmd.Parameters.AddWithValue("@full_name", card.Name);
+            cmd.Parameters.AddWithValue("@phone_number_owner", card.Phone);
+            cmd.Parameters.AddWithValue("@address_owner", card.Address);
+            cmd.Parameters.AddWithValue("@discount_percents", card.Discount);
+            cmd.Parameters.AddWithValue("@card_id", card.ID);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void UpdateCategory(DBCategory category)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Category " +
+                "Set name_category = @name_category " +
+                "WHERE id_category = @id_category; ";
+
+            cmd.Parameters.AddWithValue("@name_product", category.Name);
+            cmd.Parameters.AddWithValue("@id_category", category.ID);
+            
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void UpdateWorker(DBWorker worker)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+           // string date1 = worker.Date_start.Date.ToString("d").Replace(".", "/");
+          //  string date2 = worker.Birthday.Date.ToString("d").Replace(".", "/");
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Worker " +
+                "Set full_name = @full_name, " +
+                //"position = @position," +
+                " salary = @salary, " +
+                "date_start = @date_start," +
+                " birthday = @birthday, " +
+                "phone_number = @phone_number," +
+                " address = @address," +
+                " id_manager = @id_manager " +
+                " WHERE id_worker = @id_worker;";
+
+            cmd.Parameters.AddWithValue("@full_name", worker.Name);
+           // cmd.Parameters.AddWithValue("@position", worker.Position);
+            cmd.Parameters.AddWithValue("@salary", worker.Salary);
+            cmd.Parameters.AddWithValue("@date_start", worker.Date_start);
+            cmd.Parameters.AddWithValue("@birthday", worker.Birthday);            
+            cmd.Parameters.AddWithValue("@phone_number", worker.Phone);
+            cmd.Parameters.AddWithValue("@address", worker.Address);
+            cmd.Parameters.AddWithValue("@id_manager", worker.IDManager);
+            cmd.Parameters.AddWithValue("@id_worker", worker.ID);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void UpdateCheck(DBCheckInfo check, int cashier)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+            // string date1 = worker.Date_start.Date.ToString("d").Replace(".", "/");
+            //  string date2 = worker.Birthday.Date.ToString("d").Replace(".", "/");
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Check Set total_sum = @total_sum,client_card_id = @client_card_id " +
+                " WHERE id_check = @id_check";
+
+           // cmd.Parameters.AddWithValue("@date_of_purchase", check.PurchaseDate);           
+            cmd.Parameters.AddWithValue("@total_sum", check.Total_sum);
+            //cmd.Parameters.AddWithValue("@vat", Math.Round(check.VAT));
+            cmd.Parameters.AddWithValue("@client_card_id", check.IDCard);
+            cmd.Parameters.AddWithValue("@cashier_id", cashier);
+            cmd.Parameters.AddWithValue("@id_check", check.ID);
+           
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public decimal SumOfCheck(int id)
+        {
+            decimal res = 0;
+            string queryString = "SELECT sum(price * amount)" +
+                " FROM Sale" +
+                " WHERE check_id = " + id;                
+
+            using (OleDbConnection connection = new OleDbConnection(
+                       connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = queryString;
+                command.CommandType = System.Data.CommandType.Text;
+                connection.Open();
+
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    try
+                    {
+                        res = Convert.ToInt32(reader[0]);
+                    }
+                    catch(Exception e)
+                    {
+                        res = 0;
+                    }
+                    
+                }
+                reader.Close();
+
+            }
+            return res;
+        }
+
+        
     }
+
+    
 }
+

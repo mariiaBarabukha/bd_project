@@ -1,4 +1,5 @@
 ﻿using GUI.ViewModels.MainMenu.Options;
+using GUI.Views.AddEditPanel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace GUI.Views.MainMenu.Options
         ChecksViewModel _view;
         public ChecksView()
         {
-            _view = new ChecksViewModel(Reload, GoToSales);
+            _view = new ChecksViewModel(Reload, GoToSales, GoToAdd);
             InitializeComponent();
             DataContext = _view;
         }
@@ -35,6 +36,11 @@ namespace GUI.Views.MainMenu.Options
         public void GoToSales()
         {
             Content = new CheckDetailsView();
+        }
+
+        public void GoToAdd()
+        {
+            Content = new Checks();
         }
     }
 }

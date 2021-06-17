@@ -13,11 +13,11 @@ namespace Controller.DBObjects
         {
             makeObjectdFrom(reader);
         }
-        public DBSale(int iDCheck, string name, int upc_p, decimal price,
-            int amount, bool isProm, string characteristic)
+        public DBSale(int iDCheck, int idprod, string name, decimal price, int amount)
         {
             //ID = Convert.ToInt32(Guid.NewGuid());            
             IDCheck = iDCheck;
+            IDProduct = idprod;
             Price = price;
             Amount = amount;
             NameProduct = name;
@@ -28,9 +28,11 @@ namespace Controller.DBObjects
             Price = p.Price;
             Amount = p.Amount;
             NameProduct = p.NameProduct;
+            IDProduct = p.IDProduct;
         }
 
         public int IDCheck { get; set; }
+        public int IDProduct { get; set; }
         public string NameProduct { get; set; }
         public int Amount { get; set; }
         public decimal Price { get; set; }
@@ -38,7 +40,8 @@ namespace Controller.DBObjects
         public DBObject makeObjectdFrom(OleDbDataReader reader)
         {
             IDCheck = Convert.ToInt32(reader[0]);
-            NameProduct = reader[5].ToString();
+            IDProduct = Convert.ToInt32(reader[1]);
+            NameProduct = reader[11].ToString();
             Amount = Convert.ToInt32(reader[2]);
             Price = Convert.ToDecimal(reader[3]);
             return new DBSale(this);

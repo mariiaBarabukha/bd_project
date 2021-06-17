@@ -20,13 +20,11 @@ namespace GUI.Views.MainMenu.Options
     public partial class WorkersView : UserControl
     {
         WorkersViewModel _view;
-        public WorkersView(Action goToCashiers, Action goToFind)
+        public WorkersView(Action goToCashiers, Action goToFind, Action reload, Action goToEdit)
         {
-            _view = new WorkersViewModel(goToCashiers, goToFind);
+            _view = new WorkersViewModel(goToCashiers, goToFind, reload, goToEdit);
             InitializeComponent();
             DataContext = _view;
         }
-
-       
     }
 }

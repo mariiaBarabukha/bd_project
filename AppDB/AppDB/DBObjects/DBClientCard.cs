@@ -42,5 +42,14 @@ namespace Controller.DBObjects
             Address = w.Address;
             Discount = w.Discount;
         }
+
+        public DBClientCard(int id, string name, string phone, string address, double discout)
+        {
+            ID = id;
+            Name = name;
+            Phone = phone;
+            Address = address;
+            Discount = discout;
+        }
     }
 }

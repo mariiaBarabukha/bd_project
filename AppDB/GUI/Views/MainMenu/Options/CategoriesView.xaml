@@ -7,7 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView ItemsSource="{Binding Categories}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Categories}"
+                  SelectedItem="{Binding Category}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -20,5 +25,14 @@
 
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="100" Height="20" Margin="5"
+                        Command="{Binding Delete}">Delete</Button>
+            <Button Width="100" Height="20" Margin="5"
+                        Command="{Binding Edit}">Edit</Button>
+            <Button Width="100" Height="20" Margin="5"
+                        Command="{Binding Add}">Add</Button>
+        </StackPanel>
+       
     </Grid>
 </UserControl>

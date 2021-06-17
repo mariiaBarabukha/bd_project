@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI.Views.MainMenu.Options"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>          
@@ -48,6 +51,12 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Height="20"
                 Command="{Binding GoToDetails}">Details</Button>
+            <Button Width="100" Height="20"
+                Command="{Binding Delete}" Visibility="{Binding Path=delButtonVisibility, 
+                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+            <Button  Width="100" Height="20"
+                Command="{Binding Add}" Visibility="{Binding Path=addButtonVisibility, 
+                    Converter={StaticResource BoolToVisConverter}}">Add</Button>
         </StackPanel>
     </Grid>
 </UserControl>

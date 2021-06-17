@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="GUI.Views.AddEditPanel.Workers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Views.AddEditPanel"
+             mc:Ignorable="d" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Margin="5">ID:</TextBlock>
+        <TextBox Margin="5" Grid.Column="1"
+                 Width="100" Height="20" Text="{Binding ID}" IsEnabled="False"></TextBox>
+
+        <TextBlock Grid.Row="1" Margin="5">Full name:</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5"
+                 Width="100" Height="20" Text="{Binding Name}"></TextBox>
+
+        <TextBlock Grid.Row="2" Margin="5">Position:</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="2" Margin="5"
+                 Width="100" Height="20" ItemsSource="{Binding Roles}"
+                 SelectedItem="{Binding Position}"></ComboBox>
+
+        <TextBlock Grid.Row="3" Margin="5">Salary:</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="5"
+                 Width="100" Height="20" Text="{Binding Salary}"></TextBox>
+        
+        <TextBlock Margin="5" Grid.Row="4">First work day</TextBlock>
+        <TextBox Width="100" Grid.Row="4" Grid.Column="1" Margin="5" 
+                 Text="{Binding Date_start, StringFormat=dd/MM/yyyy}"/>
+        <TextBlock Margin="5" Grid.Row="5">Birthday</TextBlock>
+        
+        <TextBox Width="100" Grid.Row="5" Grid.Column="1" Margin="5" 
+                 Text="{Binding Birthday, StringFormat=dd/MM/yyyy}"/>
+
+        <TextBlock Grid.Row="6" Margin="5">Phone:</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="5"
+                 Width="100" Height="20" Text="{Binding Phone}"></TextBox>
+
+        <TextBlock Grid.Row="7" Margin="5">Address:</TextBlock>        
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="5"
+                 Width="100" Height="20" Text="{Binding Address}"></TextBox>
+
+        <TextBlock Grid.Row="8" Margin="5">Manager:</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="8" Margin="5"
+                 Width="100" Height="20" ItemsSource="{Binding Names_managers}"
+                 SelectedItem="{Binding Name_manager}"></ComboBox>
+        <StackPanel Grid.Row="9" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Width="100" Height="20" Margin="5" Command="{Binding Save}">Save changes</Button>
+            <Button Width="100" Height="20" Margin="5" Command="{Binding Back}">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

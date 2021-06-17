@@ -22,7 +22,7 @@ namespace GUI.Views.MainMenu.Options
         CheckDetailsViewModel _view;
         public CheckDetailsView()
         {
-            _view = new CheckDetailsViewModel(Back);
+            _view = new CheckDetailsViewModel(Back, Reload);
             InitializeComponent();
             DataContext = _view;
         }
@@ -30,6 +30,11 @@ namespace GUI.Views.MainMenu.Options
         public void Back()
         {
             Content = new ChecksView();
+        }
+
+        public void Reload()
+        {
+            Content = new CheckDetailsView();
         }
     }
 }

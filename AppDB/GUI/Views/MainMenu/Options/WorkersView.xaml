@@ -10,8 +10,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding _Workers}">
+        <ListView ItemsSource="{Binding _Workers}" SelectedItem="{Binding Worker}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -31,12 +32,19 @@
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Address}" Width="100">Address</GridViewColumn>
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=ID_manager}">ID_manager</GridViewColumn>
+                        DisplayMemberBinding="{Binding Path=Name_manager}">Name of Manager</GridViewColumn>
                 </GridView>
 
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Row="1" Orientation="Horizontal"
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="5" HorizontalAlignment="Center"
+            Command="{Binding Delete}" Width="100" Height="20">Delete</Button>
+            <Button Margin="5" HorizontalAlignment="Center"
+            Command="{Binding Edit}" Width="100" Height="20">Edit</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button Width="200" Height="20" Margin="10"
                 Command="{Binding GetCashiers}">Only cashiers</Button>
