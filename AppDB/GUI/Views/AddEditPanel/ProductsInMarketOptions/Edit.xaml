@@ -19,30 +19,51 @@
         </Grid.RowDefinitions>
 
         <StackPanel VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center">UPC</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat" >UPC</TextBlock>
             <ComboBox ItemsSource="{Binding UPCs}" Width="100" Height="20"
                       SelectedItem="{Binding UPC}"></ComboBox>
-            <Button Width="70" Height="20" Command="{Binding Find}">Find</Button>
+            <Button Width="70" Height="20" Command="{Binding Find}" TextBlock.FontFamily="Montserrat">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Find
+            </Button>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center">Name</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Name</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Name}" IsEnabled="false"></TextBox>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" Grid.Column="2">
-            <TextBlock HorizontalAlignment="Center">Price</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Price</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Price}"></TextBox>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" Grid.Column="3">
-            <TextBlock HorizontalAlignment="Center">Amount</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Amount</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Amount}"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="100" Height="20" Margin="35" Command="{Binding Save}">Save</Button>
-            <Button Width="100" Height="20" Margin="35" Command="{Binding Cancel}">Cancel</Button>
+            <Button Width="120" Height="25" Margin="35" Command="{Binding Save}" TextBlock.FontFamily="Montserrat" FontWeight="Medium" FontStyle="Normal">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Save
+            </Button>
+            <Button Width="120" Height="25" Margin="35" Command="{Binding Cancel}" TextBlock.FontFamily="Montserrat" FontWeight="Medium" FontStyle="Normal">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Cancel
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

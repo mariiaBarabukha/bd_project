@@ -22,5 +22,15 @@ namespace GUI.Views
         {
             InitializeComponent();
         }
+
+        private void CashierOptionsView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CashierOptionsView_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

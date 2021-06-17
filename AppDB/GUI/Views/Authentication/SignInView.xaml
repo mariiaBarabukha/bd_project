@@ -18,11 +18,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2">
-            <TextBlock Margin="10, 10, 10, 0">Login</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Login</TextBlock>
             <TextBox Name="LoginInput" Width="300" Margin="10" HorizontalAlignment="Stretch" Text ="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
-            <TextBlock Margin="10, 10, 10, 0">Password</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Password</TextBlock>
             <PasswordBox Name="PasswordInput" Width="300" Margin="10" HorizontalAlignment="Stretch" PasswordChanged="PasswordInput_OnPasswordChanged"></PasswordBox>
         </StackPanel>
         <Grid Grid.Row ="2">
@@ -32,11 +32,23 @@
             </Grid.ColumnDefinitions>
 
             <Button Name="SignIn" Grid.Column="0" Margin="10,10,10,10" 
-                    Width="140" Command="{Binding SignInCommand}"
-                    Background="#8caba8">Sign In</Button>
+                    Width="140" Command="{Binding SignInCommand}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFCFF2FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background> Sign In
+            </Button>
             <Button Grid.Column="1" Name ="SignUp" Margin="10,10,10,10" 
-                    Width="140" Command ="{Binding SignUpCommand}"
-                    Background="#8caba8">Go to Sign Up</Button>
+                    Width="140" Command ="{Binding SignUpCommand}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/Authentication/Rectangle 46545.png"/>
+                </Button.Background> Go to Sign Up
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

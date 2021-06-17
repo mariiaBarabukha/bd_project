@@ -16,7 +16,7 @@ namespace Controller
         //int usercounter = 0;
         IDBObject[] dBObjects;
         DBObject obj = new DBObject();
-        string connectionString = @"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\\study\\2_year_of_study\\bd_1\\АІС\\supermarket.accdb;Persist Security Info=False;";
+        string connectionString = @"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\\supermarket.accdb;Persist Security Info=False;";
 
         public decimal MinSalary { get => minSalary; }
 

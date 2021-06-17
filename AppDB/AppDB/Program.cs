@@ -19,7 +19,7 @@ namespace AppDB
                 " FROM [Product] INNER JOIN [Category] ON [Product].[category_id] = [Category].[id_category]"+
                 " WHERE [name_category] = 'Побутова хімія'))";
 
-            string connectionString = @"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\\study\\2_year_of_study\\bd_1\\АІС\\supermarket.accdb;Persist Security Info=False;";
+            string connectionString = @"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\\supermarket.accdb;Persist Security Info=False;";
             using (OleDbConnection connection = new OleDbConnection(
                        connectionString))
             using (var command = connection.CreateCommand())

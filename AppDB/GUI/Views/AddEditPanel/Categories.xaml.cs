@@ -32,5 +32,10 @@ namespace GUI.Views.AddEditPanel
         {
             Content = new CategoriesView();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

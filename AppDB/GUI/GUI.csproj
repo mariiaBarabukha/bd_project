@@ -7,11 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\AddEditPanel\ProductsInMarketOptions\Rrrrrrrrrr.png" />
+    <None Remove="Views\Authentication\Rectangle 46545.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AppDB\Controller.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\AddEditPanel\ProductsInMarketOptions\Rrrrrrrrrr.png" />
+    <Resource Include="Views\Authentication\Rectangle 46545.png" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <parts:CashierOptionsView></parts:CashierOptionsView>
+        <parts:CashierOptionsView Loaded="CashierOptionsView_Loaded_1"></parts:CashierOptionsView>
         <options:SelectedCashierView Grid.Column="1"></options:SelectedCashierView>
     </Grid>
 </UserControl>

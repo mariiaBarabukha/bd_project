@@ -22,47 +22,61 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <TextBlock Margin="5">ID:</TextBlock>
+
+        <TextBlock Margin="5" FontFamily="Montserrat">ID:</TextBlock>
         <TextBox Margin="5" Grid.Column="1"
                  Width="100" Height="20" Text="{Binding ID}" IsEnabled="False"></TextBox>
 
-        <TextBlock Grid.Row="1" Margin="5">Full name:</TextBlock>
+        <TextBlock Grid.Row="1" Margin="5" FontFamily="Montserrat">Full name:</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="5"
                  Width="100" Height="20" Text="{Binding Name}"></TextBox>
 
-        <TextBlock Grid.Row="2" Margin="5">Position:</TextBlock>
+        <TextBlock Grid.Row="2" Margin="5" FontFamily="Montserrat">Position:</TextBlock>
         <ComboBox Grid.Column="1" Grid.Row="2" Margin="5"
                  Width="100" Height="20" ItemsSource="{Binding Roles}"
                  SelectedItem="{Binding Position}"></ComboBox>
 
-        <TextBlock Grid.Row="3" Margin="5">Salary:</TextBlock>
+        <TextBlock Grid.Row="3" Margin="5" FontFamily="Montserrat">Salary:</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="5"
                  Width="100" Height="20" Text="{Binding Salary}"></TextBox>
-        
-        <TextBlock Margin="5" Grid.Row="4">First work day</TextBlock>
+
+        <TextBlock Margin="5" Grid.Row="4" FontFamily="Montserrat">First work day</TextBlock>
         <TextBox Width="100" Grid.Row="4" Grid.Column="1" Margin="5" 
                  Text="{Binding Date_start, StringFormat=dd/MM/yyyy}"/>
-        <TextBlock Margin="5" Grid.Row="5">Birthday</TextBlock>
-        
+        <TextBlock Margin="5" Grid.Row="5" FontFamily="Montserrat">Birthday</TextBlock>
+
         <TextBox Width="100" Grid.Row="5" Grid.Column="1" Margin="5" 
                  Text="{Binding Birthday, StringFormat=dd/MM/yyyy}"/>
 
-        <TextBlock Grid.Row="6" Margin="5">Phone:</TextBlock>
+        <TextBlock Grid.Row="6" Margin="5" FontFamily="Montserrat">Phone:</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="6" Margin="5"
                  Width="100" Height="20" Text="{Binding Phone}"></TextBox>
 
-        <TextBlock Grid.Row="7" Margin="5">Address:</TextBlock>        
+        <TextBlock Grid.Row="7" Margin="5" FontFamily="Montserrat">Address:</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="7" Margin="5"
                  Width="100" Height="20" Text="{Binding Address}"></TextBox>
 
-        <TextBlock Grid.Row="8" Margin="5">Manager:</TextBlock>
+        <TextBlock Grid.Row="8" Margin="5" FontFamily="Montserrat">Manager:</TextBlock>
         <ComboBox Grid.Column="1" Grid.Row="8" Margin="5"
                  Width="100" Height="20" ItemsSource="{Binding Names_managers}"
                  SelectedItem="{Binding Name_manager}"></ComboBox>
         <StackPanel Grid.Row="9" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Button Width="100" Height="20" Margin="5" Command="{Binding Save}">Save changes</Button>
-            <Button Width="100" Height="20" Margin="5" Command="{Binding Back}">Cancel</Button>
+            <Button Width="120" Height="25" Margin="5" Command="{Binding Save}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Save changes
+            </Button>
+            <Button Width="120" Height="25" Margin="5" Command="{Binding Back}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Cancel
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

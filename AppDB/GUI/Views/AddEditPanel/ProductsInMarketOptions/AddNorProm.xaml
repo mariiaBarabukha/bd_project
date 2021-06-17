@@ -17,18 +17,18 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center">Name</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Name</TextBlock>
             <ComboBox ItemsSource="{Binding Names}" SelectedItem="{Binding Product}"
                       Width="100" Height="20"></ComboBox>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" Grid.Column="1">
-            <TextBlock HorizontalAlignment="Center">Price</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Price</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Price}"></TextBox>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" Grid.Column="2">
-            <TextBlock HorizontalAlignment="Center">Amount</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat">Amount</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Amount}"></TextBox>
         </StackPanel>
 

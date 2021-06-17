@@ -8,13 +8,27 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock>Product UPC:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Product UPC:</TextBlock>
             <TextBox Width="50" Height="20" Text="{Binding UPC}" IsEnabled="{Binding isEnabled}"></TextBox>
-            
-            <TextBlock>Amount:</TextBlock>
+
+            <TextBlock FontFamily="Montserrat">Amount:</TextBlock>
             <TextBox Width="50" Height="20" Text="{Binding Amount}"></TextBox>
-            <Button Width="50" Height="20" Margin="5" Command="{Binding Save}">Save</Button>
-            <Button Width="50" Height="20" Margin="5" Command="{Binding Back}">Back</Button>
+            <Button Width="60" Height="36" Margin="5" Command="{Binding Save}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFCFF2FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background> Save
+            </Button>
+            <Button Width="60" Height="36" Margin="5" Command="{Binding Back}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFCFF2FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background> Back
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

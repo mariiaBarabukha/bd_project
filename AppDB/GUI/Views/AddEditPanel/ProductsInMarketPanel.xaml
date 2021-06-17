@@ -13,16 +13,42 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Width="100" Height="50" Margin="5" Command="{Binding AddNew}">
-            <TextBlock TextWrapping="Wrap">Add new product</TextBlock>
+        <Button Width="100" Height="50" Margin="5" Command="{Binding AddNew}" FontFamily="Montserrat" FontWeight="Medium">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+            </Button.Background>
+            <TextBlock TextWrapping="Wrap" FontFamily="Montserrat" FontWeight="Medium">Add new product</TextBlock>
         </Button>
         <Button Width="100" Height="50" Margin="5" Command="{Binding AddProm}"
-                Grid.Column="1">
-            <TextBlock TextWrapping="Wrap">Add promotional product</TextBlock>
+                Grid.Column="1" FontFamily="Montserrat" FontWeight="Medium">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+            </Button.Background>
+            <TextBlock TextWrapping="Wrap" FontFamily="Montserrat" FontWeight="Medium" TextAlignment="Center">Add promotional product</TextBlock>
         </Button>
         <Button Width="100" Height="50" Margin="5" Command="{Binding Edit}"
-                Grid.Column="2">Edit</Button>
+                Grid.Column="2" TextBlock.FontFamily="Montserrat" TextBlock.FontWeight="Medium" FontFamily="Montserrat" FontWeight="Medium">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+            </Button.Background> Edit
+        </Button>
         <Button Width="100" Height="50" Margin="5" Command="{Binding Back}"
-                Grid.Column="3">Back</Button>
+                Grid.Column="3" TextBlock.FontFamily="Montserrat" TextBlock.FontWeight="Medium" FontFamily="Montserrat" FontWeight="Medium">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+            </Button.Background> Back
+        </Button>
     </Grid>
 </UserControl>

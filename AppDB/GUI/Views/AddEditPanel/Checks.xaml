@@ -15,18 +15,39 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock>Client Card:</TextBlock>
+            <TextBlock FontFamily="Montserrat" FontWeight="Normal">Client Card:</TextBlock>
             <TextBox Width="100" Height="20" Text="{Binding Card}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"> 
-            <Button  Width="100" Height="20" Command="{Binding AddProduct}">Add Product</Button>
-            <Button  Width="100" Height="20" Command="{Binding EditProduct}">Edit Product</Button>
-            <Button  Width="100" Height="20" Command="{Binding DeleteProduct}">Delete Product</Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Width="120" Height="25" Command="{Binding AddProduct}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Add Product
+            </Button>
+            <Button  Width="120" Height="25" Command="{Binding EditProduct}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Edit Product
+            </Button>
+            <Button  Width="120" Height="25" Command="{Binding DeleteProduct}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Delete Product
+            </Button>
         </StackPanel>
-        
+
         <ListView Grid.Row="3" ItemsSource="{Binding Sales}"
                   SelectedItem="{Binding Sale}"
-                  HorizontalAlignment="Center" Margin="5">
+                  HorizontalAlignment="Center" Margin="5" TextBlock.FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
 
@@ -39,15 +60,29 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock>Total: </TextBlock>
+            <TextBlock FontFamily="Montserrat" FontWeight="DemiBold">Total:</TextBlock>
             <TextBlock Text="{Binding Total}"></TextBlock>
-            <TextBlock>VAT:</TextBlock>
+            <TextBlock FontFamily="Montserrat" FontWeight="DemiBold">VAT:</TextBlock>
             <TextBlock Text="{Binding VAT}"></TextBlock>
 
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="70" Height="20" Margin="5" Command="{Binding Save}">Save</Button>
-            <Button Width="70" Height="20" Margin="5" Command="{Binding Back}">Cancel</Button>
+            <Button Width="120" Height="25" Margin="5" Command="{Binding Save}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Save
+            </Button>
+            <Button Width="120" Height="25" Margin="5" Command="{Binding Back}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
+                </Button.Background> Cancel
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
