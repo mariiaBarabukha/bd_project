@@ -11,7 +11,7 @@
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Cashiers}">
+        <ListView ItemsSource="{Binding Cashiers}" FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -37,6 +37,6 @@
             </ListView.View>
         </ListView>
         <Button Grid.Row="1" Width="200" Height="20" Margin="10"
-                Command="{Binding GetAll}">All</Button>
+                Command="{Binding GetAll}" FontFamily="Montserrat" FontWeight="Medium">All</Button>
     </Grid>
 </UserControl>

@@ -9,13 +9,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Find by Cashier</TabItem.Header>
                 <TabItem.Content>
                     <tabs:ChecksView></tabs:ChecksView>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Find by ID</TabItem.Header>
                 <TabItem.Content>
                     <local:CheckByIDView></local:CheckByIDView>

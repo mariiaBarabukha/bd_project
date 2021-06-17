@@ -17,6 +17,6 @@
         </StackPanel>
         <Button Grid.Column="1" Width="70" Height="20" Margin="10"
                 Command="{Binding LogOut}"
-                HorizontalAlignment="Right">Log out</Button>
+                HorizontalAlignment="Right" FontFamily="Montserrat">Log out</Button>
     </Grid>
 </UserControl>

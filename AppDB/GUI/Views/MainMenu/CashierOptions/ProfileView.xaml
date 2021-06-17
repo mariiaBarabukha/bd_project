@@ -18,41 +18,41 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>ID: </TextBlock>
+            <TextBlock FontFamily="Montserrat">ID:</TextBlock>
             <TextBlock Text="{Binding ID}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Name:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Name:</TextBlock>
             <TextBlock Text="{Binding Name}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Birthday:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Birthday:</TextBlock>
             <TextBlock Text="{Binding Birthday}"></TextBlock>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Position:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Position:</TextBlock>
             <TextBlock Text="{Binding Position}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Salary:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Salary:</TextBlock>
             <TextBlock Text="{Binding Salary}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>First work day:</TextBlock>
+            <TextBlock FontFamily="Montserrat">First work day:</TextBlock>
             <TextBlock Text="{Binding Date_start}"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>ID:</TextBlock>
+            <TextBlock FontFamily="Montserrat">ID:</TextBlock>
             <TextBlock Text="{Binding Phone}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Address:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Address:</TextBlock>
             <TextBlock Text="{Binding Address}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Birthday:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Birthday:</TextBlock>
             <TextBlock Text="{Binding Birthday}"></TextBlock>
         </StackPanel>
 

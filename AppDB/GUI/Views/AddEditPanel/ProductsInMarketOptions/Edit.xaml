@@ -22,7 +22,7 @@
             <TextBlock HorizontalAlignment="Center" FontFamily="Montserrat" >UPC</TextBlock>
             <ComboBox ItemsSource="{Binding UPCs}" Width="100" Height="20"
                       SelectedItem="{Binding UPC}"></ComboBox>
-            <Button Width="70" Height="20" Command="{Binding Find}" TextBlock.FontFamily="Montserrat">
+            <Button Width="70" Height="20" Command="{Binding Find}" TextBlock.FontFamily="Montserrat" FontWeight="Medium">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>

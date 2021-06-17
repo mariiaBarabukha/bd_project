@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <ListView ItemsSource="{Binding ProductsMarket}"
-                      SelectedItem="{Binding Product}">
+                      SelectedItem="{Binding Product}" FontFamily="Montserrat">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn
@@ -39,26 +39,26 @@
             </ListView>
             <StackPanel  VerticalAlignment="Top">
                 <Button Width="100" Height="20" Margin="5" 
-                        Command="{Binding SortByAmount}">Sort by amount</Button>
+                        Command="{Binding SortByAmount}" FontFamily="Montserrat" FontWeight="Medium">Sort by amount</Button>
                 <Button Width="100" Height="20" Margin="5"
-                        Command="{Binding SortByName}">Sort by name</Button>
+                        Command="{Binding SortByName}" FontFamily="Montserrat" FontWeight="Medium">Sort by name</Button>
                 <Button Width="100" Height="20" Margin="5"
                         Command="{Binding Delete}" Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+                    Converter={StaticResource BoolToVisConverter}}" FontFamily="Montserrat" FontWeight="Medium">Delete</Button>
                 <Button Width="100" Height="20" Margin="5"
                         Command="{Binding Manage}" Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Manage</Button>
+                    Converter={StaticResource BoolToVisConverter}}" FontFamily="Montserrat" FontWeight="Medium">Manage</Button>
             </StackPanel>
-           
+
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Height="20" Margin="5"
-                    Command="{Binding GetPromotional}">Promotional</Button>
+                    Command="{Binding GetPromotional}" FontFamily="Montserrat" FontWeight="Medium">Promotional</Button>
             <Button Width="100" Height="20" Margin="5"
-                    Command="{Binding GetNotPromotional}">Not promotional</Button>
+                    Command="{Binding GetNotPromotional}" FontFamily="Montserrat" FontWeight="Medium">Not promotional</Button>
             <Button Width="100" Height="20" Margin="5"
-                    Command="{Binding GetAll}">All</Button>
+                    Command="{Binding GetAll}" FontFamily="Montserrat" FontWeight="Medium">All</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -8,40 +8,40 @@
              mc:Ignorable="d" 
             >
     <Grid>
-        
+
         <TabControl>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Total sales</TabItem.Header>
                 <TabItem.Content>
                     <tabs:ProductsSumView></tabs:ProductsSumView>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Total amount</TabItem.Header>
                 <TabItem.Content>
                     <tabs:ProductAmountView></tabs:ProductAmountView>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Find product</TabItem.Header>
                 <TabItem.Content>
                     <tabs:FindProduct></tabs:FindProduct>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Find product details</TabItem.Header>
                 <TabItem.Content>
                     <tabs:FindProductDetailView></tabs:FindProductDetailView>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem FontFamily="Montserrat">
                 <TabItem.Header>Find product by name</TabItem.Header>
                 <TabItem.Content>
                     <tabs:FindProductByNameView></tabs:FindProductByNameView>
                 </TabItem.Content>
             </TabItem>
         </TabControl>
-        
-        
+
+
     </Grid>
 </UserControl>

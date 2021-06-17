@@ -16,16 +16,16 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Discount: </TextBlock>
+            <TextBlock FontFamily="Montserrat">Discount:</TextBlock>
             <TextBox Width="100" Height="30" Margin="5"
                      Text="{Binding Discount}"></TextBox>
             <Button Width="60" Height="30" Margin="5"
-                    Command="{Binding Find}">Find</Button>
+                    Command="{Binding Find}" TextBlock.FontFamily="Montserrat">Find</Button>
             <Button Width="60" Height="30" Margin="5"
-                    Command="{Binding GetAll}">All clients</Button>
+                    Command="{Binding GetAll}" TextBlock.FontFamily="Montserrat">All clients</Button>
         </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding ClientCards}"
-                  SelectedItem="{Binding Card}">
+                  SelectedItem="{Binding Card}" TextBlock.FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -36,7 +36,7 @@
                         DisplayMemberBinding="{Binding Path=Phone}">Phone</GridViewColumn>
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Address}" Width="100">Address</GridViewColumn>
-                    
+
                 </GridView>
 
             </ListView.View>
@@ -45,14 +45,14 @@
             <Button  Width="100" Height="20" Margin="5"
                         Command="{Binding Delete}"
                 Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+                    Converter={StaticResource BoolToVisConverter}}" TextBlock.FontFamily="Montserrat">Delete</Button>
             <Button  Width="100" Height="20" Margin="5"
-                        Command="{Binding Edit}">Edit</Button>
+                        Command="{Binding Edit}" TextBlock.FontFamily="Montserrat">Edit</Button>
             <Button  Width="100" Height="20" Margin="5"
                         Command="{Binding Add}"
                 Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Add</Button>
+                    Converter={StaticResource BoolToVisConverter}}" TextBlock.FontFamily="Montserrat">Add</Button>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

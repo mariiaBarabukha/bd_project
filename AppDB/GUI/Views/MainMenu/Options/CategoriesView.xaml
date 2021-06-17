@@ -12,7 +12,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <ListView ItemsSource="{Binding Categories}"
-                  SelectedItem="{Binding Category}">
+                  SelectedItem="{Binding Category}" FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -20,19 +20,19 @@
                         ID</GridViewColumn>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=Name}" 
-                        Width="100">Name</GridViewColumn>                    
+                        Width="100">Name</GridViewColumn>
                 </GridView>
 
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Height="20" Margin="5"
-                        Command="{Binding Delete}">Delete</Button>
+                        Command="{Binding Delete}" FontFamily="Montserrat">Delete</Button>
             <Button Width="100" Height="20" Margin="5"
-                        Command="{Binding Edit}">Edit</Button>
+                        Command="{Binding Edit}" FontFamily="Montserrat">Edit</Button>
             <Button Width="100" Height="20" Margin="5"
-                        Command="{Binding Add}">Add</Button>
+                        Command="{Binding Add}" FontFamily="Montserrat">Add</Button>
         </StackPanel>
-       
+
     </Grid>
 </UserControl>

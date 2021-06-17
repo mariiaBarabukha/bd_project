@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              >
     <Grid>
-        <ListView SelectedValue="{Binding SelectedOption}">
+        <ListView SelectedValue="{Binding SelectedOption}" FontFamily="Montserrat">
             <TextBlock Name="Workers">Workers</TextBlock>
             <TextBlock Name="Products">Products</TextBlock>
             <TextBlock Name="Products_market">Products in the Market</TextBlock>

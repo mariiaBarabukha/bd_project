@@ -10,23 +10,23 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>          
+            <RowDefinition></RowDefinition>
             <RowDefinition ></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Margin="5" Orientation="Horizontal">
-            <TextBlock Margin="5">Cashier:</TextBlock>
+            <TextBlock Margin="5" FontFamily="Montserrat">Cashier:</TextBlock>
             <ComboBox Width="300" Height="20" Margin="5"
                                 ItemsSource="{Binding Cashiers}"
                                 SelectedItem="{Binding Cashier}">
             </ComboBox>
         </StackPanel>
-        
+
         <Button Grid.Row="1" Width="50" Height="20" Margin="5"
-                Command="{Binding Find}">Find</Button>
+                Command="{Binding Find}" TextBlock.FontFamily="Montserrat">Find</Button>
         <ListView Grid.Row="2" ItemsSource="{Binding Checks}"
-                  SelectedItem="{Binding Selected}" HorizontalAlignment="Center" Margin="5">
+                  SelectedItem="{Binding Selected}" HorizontalAlignment="Center" Margin="5" TextBlock.FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -44,19 +44,19 @@
                         DisplayMemberBinding="{Binding Path=PurchaseDate}"
                         Width="100">Purchase Date
                     </GridViewColumn>
-                    
+
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Height="20"
-                Command="{Binding GoToDetails}">Details</Button>
+                Command="{Binding GoToDetails}" TextBlock.FontFamily="Montserrat">Details</Button>
             <Button Width="100" Height="20"
                 Command="{Binding Delete}" Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+                    Converter={StaticResource BoolToVisConverter}}" TextBlock.FontFamily="Montserrat">Delete</Button>
             <Button  Width="100" Height="20"
                 Command="{Binding Add}" Visibility="{Binding Path=addButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Add</Button>
+                    Converter={StaticResource BoolToVisConverter}}" TextBlock.FontFamily="Montserrat">Add</Button>
         </StackPanel>
     </Grid>
 </UserControl>

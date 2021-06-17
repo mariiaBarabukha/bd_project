@@ -47,7 +47,7 @@
                 <ImageBrush/>
             </Button.BorderBrush>
             <Button.Background>
-                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
             </Button.Background>
             <TextBlock Text="{Binding Command}"></TextBlock>
         </Button>
@@ -57,7 +57,7 @@
                 <ImageBrush/>
             </Button.BorderBrush>
             <Button.Background>
-                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png"/>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Uniform"/>
             </Button.Background> Cancel
         </Button>
     </Grid>

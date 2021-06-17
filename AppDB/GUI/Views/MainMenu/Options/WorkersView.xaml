@@ -12,7 +12,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding _Workers}" SelectedItem="{Binding Worker}">
+        <ListView ItemsSource="{Binding _Workers}" SelectedItem="{Binding Worker}" FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -39,17 +39,17 @@
         </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Margin="5" HorizontalAlignment="Center"
-            Command="{Binding Delete}" Width="100" Height="20">Delete</Button>
+            Command="{Binding Delete}" Width="100" Height="20" FontFamily="Montserrat" FontWeight="Medium">Delete</Button>
             <Button Margin="5" HorizontalAlignment="Center"
-            Command="{Binding Edit}" Width="100" Height="20">Edit</Button>
+            Command="{Binding Edit}" Width="100" Height="20" FontFamily="Montserrat" FontWeight="Medium">Edit</Button>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="2" Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button Width="200" Height="20" Margin="10"
-                Command="{Binding GetCashiers}">Only cashiers</Button>
+                Command="{Binding GetCashiers}" FontFamily="Montserrat" FontWeight="Medium">Only cashiers</Button>
             <Button Width="200" Height="20" Margin="10"
-                Command="{Binding Find}">Find</Button>
+                Command="{Binding Find}" FontFamily="Montserrat" FontWeight="Medium">Find</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -16,14 +16,14 @@
                     SelectedItem="{Binding SelectedCategory}"
                   Width="200" Height="20"></ComboBox>
         <ListView Grid.Row="1" ItemsSource="{Binding Products}"
-                  SelectedItem="{Binding Product}">
+                  SelectedItem="{Binding Product}" FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=ID}">ID</GridViewColumn>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=Name}" Width="100">Name</GridViewColumn>
-                   <GridViewColumn 
+                    <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Category}">Category</GridViewColumn>
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Expiration_day}" 
@@ -36,10 +36,10 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding Delete}" Width="100" Height="20" Margin="5">Delete</Button>
-            <Button Command="{Binding Add}" Width="100" Height="20" Margin="5">Add</Button>
-            <Button Command="{Binding Edit}" Width="100" Height="20" Margin="5">Edit</Button>
+            <Button Command="{Binding Delete}" Width="100" Height="20" Margin="5" FontFamily="Montserrat" FontWeight="Medium">Delete</Button>
+            <Button Command="{Binding Add}" Width="100" Height="20" Margin="5" FontFamily="Montserrat" FontWeight="Medium">Add</Button>
+            <Button Command="{Binding Edit}" Width="100" Height="20" Margin="5" FontFamily="Montserrat" FontWeight="Medium">Edit</Button>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

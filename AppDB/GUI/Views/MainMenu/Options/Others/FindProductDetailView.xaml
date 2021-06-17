@@ -11,14 +11,14 @@
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Margin="5">UPC:</TextBlock>
+            <TextBlock Margin="5" FontFamily="Montserrat">UPC:</TextBlock>
             <TextBox Width="100" Height="20" Margin="5" Text="{Binding UPC}"></TextBox>
-            <Button Width="50" Height="20" Margin="5" Command="{Binding Find}">Find</Button>
+            <Button Width="50" Height="20" Margin="5" Command="{Binding Find}" TextBlock.FontFamily="Montserrat">Find</Button>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Products}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Products}" TextBlock.FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
-                    
+
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
                     <GridViewColumn 

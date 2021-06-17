@@ -9,7 +9,7 @@
              >
 
     <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -23,55 +23,67 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <TextBlock Margin="10, 10, 10, 0">Login</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Login</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                      Text ="{Binding Login, UpdateSourceTrigger=LostFocus}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" >
-            <TextBlock Margin="10, 10, 10, 0">Password</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Password</TextBlock>
             <PasswordBox Name="PasswordInput" Width="300" Margin="10"
                          HorizontalAlignment="Stretch" 
                          PasswordChanged="PasswordInput_OnPasswordChanged"></PasswordBox>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="2" Grid.Column="0" >
-            <TextBlock Margin="10, 10, 10, 0">Email</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Email</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                      Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="0" >
-            <TextBlock Margin="10, 10, 10, 0">Position</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Position</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                      Text="{Binding Role, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         </StackPanel>
 
         <StackPanel Grid.Column ="1" Grid.Row="0">
-            <TextBlock Margin="10, 10, 10, 0">Full Name</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Full Name</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                          Text ="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Column ="1" Grid.Row="1">
-            <TextBlock Margin="10, 10, 10, 0">Date of birth</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Date of birth</TextBlock>
             <TextBox Width="300" Margin="10" Text="{Binding Birthday, StringFormat=dd/MM/yyyy,
-                UpdateSourceTrigger=PropertyChanged}"/>               
-            
+                UpdateSourceTrigger=PropertyChanged}"/>
+
         </StackPanel>
         <StackPanel Grid.Column ="1" Grid.Row="2">
-            <TextBlock Margin="10, 10, 10, 0">Phone number</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Phone number</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                      Text ="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Column ="1" Grid.Row="3">
-            <TextBlock Margin="10, 10, 10, 0">Address</TextBlock>
+            <TextBlock Margin="10, 10, 10, 0" FontFamily="Montserrat">Address</TextBlock>
             <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" 
                      Text ="{Binding Address, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
-        <Button Grid.Column="0" Grid.Row="4" Margin="10,10,10,10" Width ="140"  
-                Background="#8caba8" 
-                Command="{Binding SignUpCommand}">Sign Up</Button>
-        <Button Grid.Column="1" Grid.Row="4" Margin="10,10,10,10" Width ="140" 
-                Background="#8caba8"
-                Command="{Binding SignInCommand}">Go to Sign In</Button>
+        <Button Grid.Column="0" Grid.Row="4" Margin="10,10,10,10" Width ="140" 
+                Command="{Binding SignUpCommand}" TextBlock.FontFamily="Montserrat">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Fill"/>
+            </Button.Background> Sign Up
+        </Button>
+        <Button Grid.Column="1" Grid.Row="4" Margin="10,10,10,10" Width ="140"
+                Command="{Binding SignInCommand}" TextBlock.FontFamily="Montserrat">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/AddEditPanel/ProductsInMarketOptions/Rrrrrrrrrr.png" Stretch="Fill"/>
+            </Button.Background> Go to Sign In
+        </Button>
     </Grid>
 </UserControl>

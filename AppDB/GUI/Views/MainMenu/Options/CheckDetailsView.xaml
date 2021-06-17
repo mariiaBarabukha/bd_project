@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <ListView Grid.Row="0" ItemsSource="{Binding Sales}"
                   SelectedItem="{Binding Sale}"
-                  HorizontalAlignment="Center" Margin="5">
+                  HorizontalAlignment="Center" Margin="5" FontFamily="Montserrat">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -37,13 +37,13 @@
         <StackPanel Grid.Row="1" >
             <Button Width="100" Height="20" Margin="5"
                 HorizontalAlignment="Center"
-                Command="{Binding Back}">Back</Button>
+                Command="{Binding Back}" FontFamily="Montserrat">Back</Button>
             <Button Width="100" Height="20" Margin="5"
                 HorizontalAlignment="Center"
                 Command="{Binding Delete}"
                     Visibility="{Binding Path=delButtonVisibility, 
-                    Converter={StaticResource BoolToVisConverter}}">Delete</Button>
+                    Converter={StaticResource BoolToVisConverter}}" FontFamily="Montserrat">Delete</Button>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

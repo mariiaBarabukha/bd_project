@@ -12,7 +12,7 @@
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock>Name:</TextBlock>
+            <TextBlock FontFamily="Montserrat">Name:</TextBlock>
             <ComboBox ItemsSource="{Binding Names}" 
                     SelectedItem="{Binding SelectedName}"
                   Width="200" Height="20"></ComboBox>
