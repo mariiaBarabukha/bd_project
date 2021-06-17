@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.ViewModels.MainMenu.AddEditPanels.ProductsInMarketOptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,22 @@ namespace GUI.Views.AddEditPanel.ProductsInMarketOptions
     /// </summary>
     public partial class Edit : UserControl
     {
+        EditViewModel _view;
         public Edit()
         {
+            _view = new EditViewModel(Back, Reload);
             InitializeComponent();
+            DataContext = _view;
+        }
+
+        public void Back()
+        {
+            Content = new ProductsInMarketPanel();
+        }
+
+        public void Reload()
+        {
+            Content = new Edit();
         }
     }
 }

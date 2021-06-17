@@ -1,5 +1,6 @@
 ﻿using GUI.ViewModels.MainMenu.AddEditPanels;
 using GUI.Views.AddEditPanel.ProductsInMarketOptions;
+using GUI.Views.MainMenu.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,12 +41,12 @@ namespace GUI.Views.AddEditPanel
 
         public void Edit()
         {
-            Content = new Add();
+            Content = new Edit();
         }
 
         public void Back()
         {
-            Content = new Add();
+            Content = new ProductsInMarketView();
         }
     }
 }

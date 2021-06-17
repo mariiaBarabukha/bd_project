@@ -21,7 +21,7 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center">UPC</TextBlock>
             <ComboBox ItemsSource="{Binding UPCs}" Width="100" Height="20"
-                      SelectedItem="{Binding UPC}"></ComboBox>
+                      SelectedItem="{Binding UPC, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
             <Button Width="70" Height="20" Command="{Binding Find}">Find</Button>
         </StackPanel>
         

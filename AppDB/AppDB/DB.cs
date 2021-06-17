@@ -778,6 +778,27 @@ namespace Controller
             connection.Close();
         }
 
+        public void UpdateProductInMarket(int upc, decimal price, int amount)
+        {
+            OleDbConnection connection = new OleDbConnection(
+                       connectionString);
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE Product_in_market " +
+                "Set price = @price," +
+                "amount_of_product = @amount_of_product " +
+                "WHERE UPC_ordinary = @UPC_ordinary; ";
+
+            
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@amount_of_product", amount);
+            cmd.Parameters.AddWithValue("@UPC_ordinary", upc);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
         public void UpdateClientCard(DBClientCard card)
         {
             OleDbConnection connection = new OleDbConnection(
